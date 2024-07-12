@@ -3,16 +3,18 @@ import React, { useState } from "react";
 function Form({ product, form, setForm, setProduct }) {
   const [inputValue, setInputValue] = useState({
     productId: product.id,
-    productTitle: product.product_title,
-    productDescription: product.product_description,
-    productCategory: product.product_category,
+    productTitle: product.title,
+    productDescription: product.description,
+    productCategory: product.category,
+    productPrice: product.price,
   });
 
+  // update the product
   const handleSubmit = async function (e) {
     e.preventDefault();
 
     const updateData = await fetch(
-      `http://localhost:3000/product/${product.id}`,
+      `https://fakestoreapi.com/products/${product.id}`,
       {
         method: "PUT",
         headers: {
@@ -20,14 +22,16 @@ function Form({ product, form, setForm, setProduct }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          product_title: inputValue.productTitle,
-          product_description: inputValue.productDescription,
-          product_category: inputValue.productCategory,
+          title: inputValue.productTitle,
+          description: inputValue.productDescription,
+          category: inputValue.productCategory,
+          price: inputValue.productPrice,
         }),
       }
     );
 
     const updatedProduct = await updateData.json();
+
     setProduct((prevProducts) =>
       prevProducts.map((item) =>
         item.id === product.id ? updatedProduct : item
@@ -40,9 +44,11 @@ function Form({ product, form, setForm, setProduct }) {
     <div className="p-5">
       <form className="[&>*]:m-4" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Product Title:</label>
+          <label htmlFor="title">
+            <strong>Product Title:</strong>
+          </label>
           <input
-            className="border-[1px] rounded-full px-6 m-2 border-black"
+            className="border-[1px] rounded-full w-full px-6 m-2 border-black"
             type="text"
             name="title"
             id="title"
@@ -53,9 +59,11 @@ function Form({ product, form, setForm, setProduct }) {
           />
         </div>
         <div>
-          <label htmlFor="description">Product Description:</label>
+          <label htmlFor="description">
+            <strong>Product Description:</strong>
+          </label>
           <input
-            className="border-[1px] rounded-full px-6 m-2 border-black"
+            className="border-[1px] rounded-full w-full px-6 m-2 border-black"
             type="text"
             name="description"
             id="description"
@@ -69,9 +77,11 @@ function Form({ product, form, setForm, setProduct }) {
           />
         </div>
         <div>
-          <label htmlFor="category">Product Category:</label>
+          <label htmlFor="category">
+            <strong>Product Category:</strong>
+          </label>
           <input
-            className="border-[1px] rounded-full px-6 m-2 border-black"
+            className="border-[1px] rounded-full w-full px-6 m-2 border-black"
             type="text"
             name="category"
             id="category"
@@ -81,9 +91,24 @@ function Form({ product, form, setForm, setProduct }) {
             }
           />
         </div>
+        <div>
+          <label htmlFor="category">
+            <strong>Product Price:</strong>
+          </label>
+          <input
+            className="border-[1px] rounded-full px-6 m-2 border-black w-full"
+            type="text"
+            name="prince"
+            id="prince"
+            value={inputValue.productPrice}
+            onChange={(e) =>
+              setInputValue({ ...inputValue, productPrice: e.target.value })
+            }
+          />
+        </div>
 
         <button
-          className="border-[1px] rounded-full px-6 mt-2 border-gray-600"
+          className="border-[1px] rounded-full px-6 mt-2 border-gray-600 hover:bg-gray-100 transition duration-150 ease-out hover:ease-in"
           type="submit"
         >
           Update

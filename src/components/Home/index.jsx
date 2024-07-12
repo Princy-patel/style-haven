@@ -4,9 +4,8 @@ import Images from '../Carousel';
 
 function HomePage() {
   return (
-    <div className="mt-56 container">
-      {/* <p>Home page</p> */}
-      {/* <Images /> */}
+    <div className="container">
+      <Images />
       <CardList />
     </div>
   );
