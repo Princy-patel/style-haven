@@ -15,12 +15,12 @@ function SignUpPage() {
     e.preventDefault();
 
     if (!inputValue.userName.trim()) {
-      alert("Enter valid username");
+      alert("Please provide a valid username");
       return;
     }
 
     if (inputValue.password !== inputValue.confirmPassword) {
-      alert("Passwords do not match!");
+      alert("Password do not match!");
       return;
     }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [inputValue, setInputValue] = useState({
@@ -14,11 +14,11 @@ function LoginPage() {
     const getUsersFromLocalStorage = JSON.parse(localStorage.getItem("users"));
 
     if (!getUsersFromLocalStorage) {
-      alert("User not exit!, Please sign up first");
+      alert("User not found! Please create an account first.");
       return;
     } else {
       if (getUsersFromLocalStorage.userName !== inputValue.username) {
-        alert("Username is not valid!");
+        alert("Invalid username!");
         return;
       }
 
@@ -66,6 +66,18 @@ function LoginPage() {
               setInputValue({ ...inputValue, password: e.target.value })
             }
           />
+        </div>
+        <div className="flex items-start mb-5">
+          <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-600">
+            Need an accound?
+            <Link
+              to="/"
+              className="text-blue-600 hover:underline dark:text-blue-500"
+              onClick={() => localStorage.removeItem("users")}
+            >
+              Sign up
+            </Link>
+          </label>
         </div>
         <button
           type="submit"

@@ -10,6 +10,14 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (location.pathname === "/") {
+      localStorage.removeItem("users");
+    }
+
+    if (location.pathname == "/login") {
+      return;
+    }
+
     let localStorageData = localStorage.getItem("users");
 
     if (localStorageData) {
@@ -18,10 +26,11 @@ function Navbar() {
     }
   }, [location.pathname]);
 
-  const handleLogout = function () {
-    // localStorage.removeItem("users");
+  // handle logout
+  const handleLogout = (e) => {
+    e.preventDefault();
+    setText({ userName: "" });
     navigate("/login");
-    setText({ ...text, userName: "" });
   };
 
   return (
