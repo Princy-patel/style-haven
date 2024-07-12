@@ -13,17 +13,22 @@ function LoginPage() {
 
     const getUsersFromLocalStorage = JSON.parse(localStorage.getItem("users"));
 
-    if (getUsersFromLocalStorage.userName !== inputValue.username) {
-      alert("Username is not valid!");
+    if (!getUsersFromLocalStorage) {
+      alert("User not exit!, Please sign up first");
       return;
-    }
+    } else {
+      if (getUsersFromLocalStorage.userName !== inputValue.username) {
+        alert("Username is not valid!");
+        return;
+      }
 
-    if (getUsersFromLocalStorage.password !== inputValue.password) {
-      alert("Password do not match!");
-      return;
-    }
+      if (getUsersFromLocalStorage.password !== inputValue.password) {
+        alert("Password do not match!");
+        return;
+      }
 
-    navigate("/home");
+      navigate("/home");
+    }
   };
   return (
     <div className="w-screen h-screen flex justify-center items-center">

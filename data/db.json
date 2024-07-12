@@ -1,0 +1,28 @@
+{
+  "product": [
+    {
+      "product_title": "Product 1",
+      "product_description": "This is the first Product",
+      "product_category": "Toyasdasd",
+      "id": "1"
+    },
+    {
+      "product_title": "Product 3",
+      "product_description": "updated",
+      "product_category": "Toy",
+      "id": "3"
+    },
+    {
+      "product_title": "Product 3",
+      "product_description": "second product",
+      "product_category": "Toy",
+      "id": "2"
+    },
+    {
+      "product_title": "Product 4",
+      "product_description": "This is the forth Product",
+      "product_category": "Toyasdasdasd",
+      "id": "4"
+    }
+  ]
+}
