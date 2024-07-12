@@ -37,6 +37,7 @@ function Cards({ product, setProduct, handleVisibility }) {
         className={`border-[1px] border-gray-600 rounded-lg p-4 h-auto pt-6 bg-white m-4 w-[20rem] shadow-lg drop-shadow-md"
       }`}
       >
+        <img src={product.image} alt={product.title} className="h-[50%]"/>
         <div className="flex justify-between items-baseline">
           <h2 className="text-base text-left font-semibold ">
             {product.title}

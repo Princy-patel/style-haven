@@ -105,6 +105,7 @@ function CardList() {
           {/* view the product */}
           {viewData && (
             <div className="h-full p-4">
+              <img src={viewData[0]?.image} alt={viewData[0]?.title} className="h-[50%]"/>
               <div className="flex justify-between">
                 <h2 className="m-2 text-left text-lg font-semibold ">
                   {viewData[0]?.title}
